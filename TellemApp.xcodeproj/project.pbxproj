@@ -7,23 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7AA2F31D947BD9695CB8193 /* Pods_TellemApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1181C58917D4159BDD3189A /* Pods_TellemApp.framework */; };
 		D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710471E1E5D7E4B00E7929D /* AppDelegate.swift */; };
-		D71047211E5D7E4B00E7929D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047201E5D7E4B00E7929D /* ViewController.swift */; };
-		D71047241E5D7E4B00E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047221E5D7E4B00E7929D /* Main.storyboard */; };
 		D71047271E5D7E4B00E7929D /* TellemApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */; };
 		D71047291E5D7E4B00E7929D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71047281E5D7E4B00E7929D /* Assets.xcassets */; };
 		D710472C1E5D7E4B00E7929D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */; };
+		D710473F1E5D837C00E7929D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047341E5D837C00E7929D /* ChatsViewController.swift */; };
+		D71047401E5D837C00E7929D /* ChooseSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047351E5D837C00E7929D /* ChooseSignUpController.swift */; };
+		D71047411E5D837C00E7929D /* CompleteSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047361E5D837C00E7929D /* CompleteSignUpController.swift */; };
+		D71047421E5D837C00E7929D /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047371E5D837C00E7929D /* ContactsViewController.swift */; };
+		D71047431E5D837C00E7929D /* FinishSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047381E5D837C00E7929D /* FinishSignUpController.swift */; };
+		D71047441E5D837C00E7929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047391E5D837C00E7929D /* LoginViewController.swift */; };
+		D71047451E5D837C00E7929D /* ProfessionalSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */; };
+		D71047461E5D837C00E7929D /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */; };
+		D71047471E5D837C00E7929D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473C1E5D837C00E7929D /* SearchViewController.swift */; };
+		D71047481E5D837C00E7929D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473D1E5D837C00E7929D /* SettingsViewController.swift */; };
+		D71047491E5D837C00E7929D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473E1E5D837C00E7929D /* SignUpController.swift */; };
+		D71047521E5D843B00E7929D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710474D1E5D843B00E7929D /* ActivityIndicator.swift */; };
+		D71047531E5D843B00E7929D /* ChatsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710474E1E5D843B00E7929D /* ChatsHelper.swift */; };
+		D71047541E5D843B00E7929D /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710474F1E5D843B00E7929D /* DatabaseService.swift */; };
+		D71047551E5D843B00E7929D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047501E5D843B00E7929D /* Extensions.swift */; };
+		D71047561E5D843B00E7929D /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047511E5D843B00E7929D /* UserObject.swift */; };
+		D71047591E5D84B900E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047571E5D84B900E7929D /* Main.storyboard */; };
+		D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A82DFCE45B788DE482814C7 /* Pods-TellemApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TellemApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TellemApp/Pods-TellemApp.release.xcconfig"; sourceTree = "<group>"; };
+		817BA4AFF506E3EB2C55513F /* Pods-TellemApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TellemApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TellemApp/Pods-TellemApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D710471B1E5D7E4A00E7929D /* TellemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TellemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D710471E1E5D7E4B00E7929D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D71047201E5D7E4B00E7929D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D71047231E5D7E4B00E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D71047261E5D7E4B00E7929D /* TellemApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TellemApp.xcdatamodel; sourceTree = "<group>"; };
 		D71047281E5D7E4B00E7929D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D710472B1E5D7E4B00E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D710472D1E5D7E4B00E7929D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D71047341E5D837C00E7929D /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		D71047351E5D837C00E7929D /* ChooseSignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignUpController.swift; sourceTree = "<group>"; };
+		D71047361E5D837C00E7929D /* CompleteSignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteSignUpController.swift; sourceTree = "<group>"; };
+		D71047371E5D837C00E7929D /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		D71047381E5D837C00E7929D /* FinishSignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishSignUpController.swift; sourceTree = "<group>"; };
+		D71047391E5D837C00E7929D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalSignUpController.swift; sourceTree = "<group>"; };
+		D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		D710473C1E5D837C00E7929D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D710473D1E5D837C00E7929D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D710473E1E5D837C00E7929D /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		D710474D1E5D843B00E7929D /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		D710474E1E5D843B00E7929D /* ChatsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsHelper.swift; sourceTree = "<group>"; };
+		D710474F1E5D843B00E7929D /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		D71047501E5D843B00E7929D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D71047511E5D843B00E7929D /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		D71047581E5D84B900E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1181C58917D4159BDD3189A /* Pods_TellemApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TellemApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +67,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7AA2F31D947BD9695CB8193 /* Pods_TellemApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0345ADE67093FCCB33529756 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1181C58917D4159BDD3189A /* Pods_TellemApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C132A4D438E720EC42FBB37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				817BA4AFF506E3EB2C55513F /* Pods-TellemApp.debug.xcconfig */,
+				2A82DFCE45B788DE482814C7 /* Pods-TellemApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D71047121E5D7E4A00E7929D = {
 			isa = PBXGroup;
 			children = (
 				D710471D1E5D7E4A00E7929D /* TellemApp */,
 				D710471C1E5D7E4A00E7929D /* Products */,
+				1C132A4D438E720EC42FBB37 /* Pods */,
+				0345ADE67093FCCB33529756 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +112,47 @@
 		D710471D1E5D7E4A00E7929D /* TellemApp */ = {
 			isa = PBXGroup;
 			children = (
+				D710474C1E5D841000E7929D /* Helpers */,
+				D71047331E5D825C00E7929D /* Controllers */,
 				D710471E1E5D7E4B00E7929D /* AppDelegate.swift */,
-				D71047201E5D7E4B00E7929D /* ViewController.swift */,
-				D71047221E5D7E4B00E7929D /* Main.storyboard */,
 				D71047281E5D7E4B00E7929D /* Assets.xcassets */,
+				D71047571E5D84B900E7929D /* Main.storyboard */,
 				D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */,
 				D710472D1E5D7E4B00E7929D /* Info.plist */,
+				D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */,
 				D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */,
 			);
 			path = TellemApp;
+			sourceTree = "<group>";
+		};
+		D71047331E5D825C00E7929D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D71047341E5D837C00E7929D /* ChatsViewController.swift */,
+				D71047351E5D837C00E7929D /* ChooseSignUpController.swift */,
+				D71047361E5D837C00E7929D /* CompleteSignUpController.swift */,
+				D71047371E5D837C00E7929D /* ContactsViewController.swift */,
+				D71047381E5D837C00E7929D /* FinishSignUpController.swift */,
+				D71047391E5D837C00E7929D /* LoginViewController.swift */,
+				D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */,
+				D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */,
+				D710473C1E5D837C00E7929D /* SearchViewController.swift */,
+				D710473D1E5D837C00E7929D /* SettingsViewController.swift */,
+				D710473E1E5D837C00E7929D /* SignUpController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D710474C1E5D841000E7929D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D710474D1E5D843B00E7929D /* ActivityIndicator.swift */,
+				D710474E1E5D843B00E7929D /* ChatsHelper.swift */,
+				D710474F1E5D843B00E7929D /* DatabaseService.swift */,
+				D71047501E5D843B00E7929D /* Extensions.swift */,
+				D71047511E5D843B00E7929D /* UserObject.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D71047301E5D7E4B00E7929D /* Build configuration list for PBXNativeTarget "TellemApp" */;
 			buildPhases = (
+				E899B15050F4445CDC26FA29 /* [CP] Check Pods Manifest.lock */,
 				D71047171E5D7E4A00E7929D /* Sources */,
 				D71047181E5D7E4A00E7929D /* Frameworks */,
 				D71047191E5D7E4A00E7929D /* Resources */,
+				083EF47EA021CAB11BC8138A /* [CP] Embed Pods Frameworks */,
+				40A12564C51311DFF3466D57 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,41 +219,105 @@
 			buildActionMask = 2147483647;
 			files = (
 				D710472C1E5D7E4B00E7929D /* LaunchScreen.storyboard in Resources */,
+				D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */,
 				D71047291E5D7E4B00E7929D /* Assets.xcassets in Resources */,
-				D71047241E5D7E4B00E7929D /* Main.storyboard in Resources */,
+				D71047591E5D84B900E7929D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		083EF47EA021CAB11BC8138A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TellemApp/Pods-TellemApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40A12564C51311DFF3466D57 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TellemApp/Pods-TellemApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E899B15050F4445CDC26FA29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D71047171E5D7E4A00E7929D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D71047211E5D7E4B00E7929D /* ViewController.swift in Sources */,
+				D71047541E5D843B00E7929D /* DatabaseService.swift in Sources */,
+				D71047551E5D843B00E7929D /* Extensions.swift in Sources */,
+				D71047441E5D837C00E7929D /* LoginViewController.swift in Sources */,
+				D71047521E5D843B00E7929D /* ActivityIndicator.swift in Sources */,
+				D71047451E5D837C00E7929D /* ProfessionalSignUpController.swift in Sources */,
+				D71047461E5D837C00E7929D /* ResetPasswordViewController.swift in Sources */,
+				D71047421E5D837C00E7929D /* ContactsViewController.swift in Sources */,
+				D71047431E5D837C00E7929D /* FinishSignUpController.swift in Sources */,
+				D71047471E5D837C00E7929D /* SearchViewController.swift in Sources */,
 				D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */,
+				D71047411E5D837C00E7929D /* CompleteSignUpController.swift in Sources */,
+				D71047491E5D837C00E7929D /* SignUpController.swift in Sources */,
+				D71047401E5D837C00E7929D /* ChooseSignUpController.swift in Sources */,
+				D71047481E5D837C00E7929D /* SettingsViewController.swift in Sources */,
+				D710473F1E5D837C00E7929D /* ChatsViewController.swift in Sources */,
+				D71047561E5D843B00E7929D /* UserObject.swift in Sources */,
 				D71047271E5D7E4B00E7929D /* TellemApp.xcdatamodeld in Sources */,
+				D71047531E5D843B00E7929D /* ChatsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D71047221E5D7E4B00E7929D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D71047231E5D7E4B00E7929D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D710472B1E5D7E4B00E7929D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D71047571E5D84B900E7929D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D71047581E5D84B900E7929D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -261,10 +416,12 @@
 		};
 		D71047311E5D7E4B00E7929D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 817BA4AFF506E3EB2C55513F /* Pods-TellemApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 65629Q9C5V;
 				INFOPLIST_FILE = TellemApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rubensneto.TellemApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,10 +431,12 @@
 		};
 		D71047321E5D7E4B00E7929D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A82DFCE45B788DE482814C7 /* Pods-TellemApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 65629Q9C5V;
 				INFOPLIST_FILE = TellemApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rubensneto.TellemApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +463,7 @@
 				D71047321E5D7E4B00E7929D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
