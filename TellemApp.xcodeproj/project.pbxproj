@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710471E1E5D7E4B00E7929D /* AppDelegate.swift */; };
+		D71047211E5D7E4B00E7929D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047201E5D7E4B00E7929D /* ViewController.swift */; };
+		D71047241E5D7E4B00E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047221E5D7E4B00E7929D /* Main.storyboard */; };
+		D71047271E5D7E4B00E7929D /* TellemApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */; };
+		D71047291E5D7E4B00E7929D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71047281E5D7E4B00E7929D /* Assets.xcassets */; };
+		D710472C1E5D7E4B00E7929D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D710471B1E5D7E4A00E7929D /* TellemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TellemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D710471E1E5D7E4B00E7929D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D71047201E5D7E4B00E7929D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D71047231E5D7E4B00E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D71047261E5D7E4B00E7929D /* TellemApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TellemApp.xcdatamodel; sourceTree = "<group>"; };
+		D71047281E5D7E4B00E7929D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D710472B1E5D7E4B00E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D710472D1E5D7E4B00E7929D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D71047181E5D7E4A00E7929D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D71047121E5D7E4A00E7929D = {
+			isa = PBXGroup;
+			children = (
+				D710471D1E5D7E4A00E7929D /* TellemApp */,
+				D710471C1E5D7E4A00E7929D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D710471C1E5D7E4A00E7929D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D710471B1E5D7E4A00E7929D /* TellemApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D710471D1E5D7E4A00E7929D /* TellemApp */ = {
+			isa = PBXGroup;
+			children = (
+				D710471E1E5D7E4B00E7929D /* AppDelegate.swift */,
+				D71047201E5D7E4B00E7929D /* ViewController.swift */,
+				D71047221E5D7E4B00E7929D /* Main.storyboard */,
+				D71047281E5D7E4B00E7929D /* Assets.xcassets */,
+				D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */,
+				D710472D1E5D7E4B00E7929D /* Info.plist */,
+				D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */,
+			);
+			path = TellemApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D710471A1E5D7E4A00E7929D /* TellemApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D71047301E5D7E4B00E7929D /* Build configuration list for PBXNativeTarget "TellemApp" */;
+			buildPhases = (
+				D71047171E5D7E4A00E7929D /* Sources */,
+				D71047181E5D7E4A00E7929D /* Frameworks */,
+				D71047191E5D7E4A00E7929D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TellemApp;
+			productName = TellemApp;
+			productReference = D710471B1E5D7E4A00E7929D /* TellemApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D71047131E5D7E4A00E7929D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Rubens Neto";
+				TargetAttributes = {
+					D710471A1E5D7E4A00E7929D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 65629Q9C5V;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D71047161E5D7E4A00E7929D /* Build configuration list for PBXProject "TellemApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D71047121E5D7E4A00E7929D;
+			productRefGroup = D710471C1E5D7E4A00E7929D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D710471A1E5D7E4A00E7929D /* TellemApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D71047191E5D7E4A00E7929D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D710472C1E5D7E4B00E7929D /* LaunchScreen.storyboard in Resources */,
+				D71047291E5D7E4B00E7929D /* Assets.xcassets in Resources */,
+				D71047241E5D7E4B00E7929D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D71047171E5D7E4A00E7929D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D71047211E5D7E4B00E7929D /* ViewController.swift in Sources */,
+				D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */,
+				D71047271E5D7E4B00E7929D /* TellemApp.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D71047221E5D7E4B00E7929D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D71047231E5D7E4B00E7929D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D710472B1E5D7E4B00E7929D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D710472E1E5D7E4B00E7929D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D710472F1E5D7E4B00E7929D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D71047311E5D7E4B00E7929D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 65629Q9C5V;
+				INFOPLIST_FILE = TellemApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rubensneto.TellemApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D71047321E5D7E4B00E7929D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 65629Q9C5V;
+				INFOPLIST_FILE = TellemApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rubensneto.TellemApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D71047161E5D7E4A00E7929D /* Build configuration list for PBXProject "TellemApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D710472E1E5D7E4B00E7929D /* Debug */,
+				D710472F1E5D7E4B00E7929D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D71047301E5D7E4B00E7929D /* Build configuration list for PBXNativeTarget "TellemApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D71047311E5D7E4B00E7929D /* Debug */,
+				D71047321E5D7E4B00E7929D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D71047261E5D7E4B00E7929D /* TellemApp.xcdatamodel */,
+			);
+			currentVersion = D71047261E5D7E4B00E7929D /* TellemApp.xcdatamodel */;
+			path = TellemApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D71047131E5D7E4A00E7929D /* Project object */;
+}
