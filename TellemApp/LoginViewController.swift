@@ -51,9 +51,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.alertView.showError("Log in Failed", subTitle: "We are not able to log you in with Facebook.\n\(error!.localizedDescription)")
         } else {
             activityIndicator.startActivityIndicator(view: self.view)
-            let accessToken = FBSDKAccessToken.current()
-            let credentials = FIRFacebookAuthProvider.credential(withAccessToken: (accessToken?.tokenString)!)
-            databaseService.firebaseSignInWithFacebook(credentials: credentials, accessToken: accessToken, result: nil)
+            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email, name"]).start(completionHandler: { (connection, result, err) in
+                if err != nil {
+                    print(err ?? "")
+                } else {
+                    let accessToken = FBSDKAccessToken.current()
+                    let credentials = FIRFacebookAuthProvider.credential(withAccessToken: (accessToken?.tokenString)!)
+                    self.databaseService.firebaseSignInWithFacebook(credentials: credentials, accessToken: accessToken, result: result)
+                }
+            })
         }
     }
     

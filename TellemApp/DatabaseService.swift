@@ -14,7 +14,7 @@ import SCLAlertView
 
 class DatabaseService {
     
-    lazy var ref = FIRDatabase.database().reference(fromURL: "https://tellem-54b66.firebaseio.com/")
+    lazy var ref = FIRDatabase.database().reference(fromURL: "https://tellemapp-c58a5.firebaseio.com/")
     let alertView = SCLAlertView()
     
     func isUserAlreadyOnDatabase(user: FIRUser, completion: @escaping () -> ()) {
@@ -42,6 +42,11 @@ class DatabaseService {
                     guard let json = result as! NSDictionary? else {
                         print("Cannot convert Json in NSDictionary.")
                         return
+                    }
+                    //Todo : get facebook picture
+                    if let id = json.value(forKey: "id") {
+                        let facebookProfileUrl = "http://graph.facebook.com/\(id)/picture?type=large"
+                        print(facebookProfileUrl)
                     }
                     DatabaseService().addFacebookUserOnDatabase(user: user!, values: json)
                 })

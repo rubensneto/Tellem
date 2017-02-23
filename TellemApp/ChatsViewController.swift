@@ -15,10 +15,11 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
     
     
     override func viewDidLoad() {
-        setData()
         collectionView?.alwaysBounceVertical = true
         navigationItem.title = "Chats"
+        setData()
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = messages?.count{
@@ -34,6 +35,7 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         let contactNameLabel = cell.viewWithTag(2) as! UILabel
         let messageLabel = cell.viewWithTag(3) as! UILabel
         let timeLabel = cell.viewWithTag(4) as! UILabel
+        let businessLabel = cell.viewWithTag(5) as! UILabel
         
         imageView.layer.cornerRadius = imageView.frame.width / 2
         if let photoURL = messages?[indexPath.row].user?.photoURL{
@@ -42,6 +44,10 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         
         if let name = messages?[indexPath.row].user?.name {
             contactNameLabel.text = name
+        }
+        
+        if let business = messages?[indexPath.row].user?.business {
+            businessLabel.text = business
         }
         
         if let date = messages?[indexPath.row].date {
