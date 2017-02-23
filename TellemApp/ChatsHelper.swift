@@ -15,8 +15,8 @@ extension ChatsViewController {
     
     func setData(){
         
-        clearEntities(name: "TellemUser")
-        clearEntities(name: "Message")
+        clearEntities("TellemUser")
+        clearEntities("Message")
         
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
@@ -91,7 +91,7 @@ extension ChatsViewController {
         }
     }
     
-    private func fetchUsers() -> [TellemUser]? {
+    fileprivate func fetchUsers() -> [TellemUser]? {
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
         
@@ -105,7 +105,7 @@ extension ChatsViewController {
         return nil
     }
 
-    func clearEntities(name: String){
+    func clearEntities(_ name: String){
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
         

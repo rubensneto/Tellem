@@ -11,7 +11,7 @@ import SCLAlertView
 import Firebase
 
 protocol CompanyObjectDelegate {
-    func fetch(companyObject: CompanyObject)
+    func fetch(_ companyObject: CompanyObject)
 }
 
 class ProfessionalSignUpController: UIViewController {

@@ -30,6 +30,7 @@
 		D71047561E5D843B00E7929D /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047511E5D843B00E7929D /* UserObject.swift */; };
 		D71047591E5D84B900E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047571E5D84B900E7929D /* Main.storyboard */; };
 		D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */; };
+		D71525111E5F036400D7ED68 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71525101E5F036400D7ED68 /* ConversationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		D71047511E5D843B00E7929D /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		D71047581E5D84B900E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D71525101E5F036400D7ED68 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		F1181C58917D4159BDD3189A /* Pods_TellemApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TellemApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 				D710473C1E5D837C00E7929D /* SearchViewController.swift */,
 				D710473D1E5D837C00E7929D /* SettingsViewController.swift */,
 				D710473E1E5D837C00E7929D /* SignUpController.swift */,
+				D71525101E5F036400D7ED68 /* ConversationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 					D710471A1E5D7E4A00E7929D = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 65629Q9C5V;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -290,6 +294,7 @@
 				D71047431E5D837C00E7929D /* FinishSignUpController.swift in Sources */,
 				D71047471E5D837C00E7929D /* SearchViewController.swift in Sources */,
 				D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */,
+				D71525111E5F036400D7ED68 /* ConversationViewController.swift in Sources */,
 				D71047411E5D837C00E7929D /* CompleteSignUpController.swift in Sources */,
 				D71047491E5D837C00E7929D /* SignUpController.swift in Sources */,
 				D71047401E5D837C00E7929D /* ChooseSignUpController.swift in Sources */,

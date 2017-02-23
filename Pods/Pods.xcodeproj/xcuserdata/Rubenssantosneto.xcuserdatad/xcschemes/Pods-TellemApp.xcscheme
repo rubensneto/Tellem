@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6A378E34F3C159A0904B92737F5ADD2"
+               BlueprintIdentifier = "5A787CB9EF6FA1BB40D2A3BB21285B23"
                BuildableName = "Pods_TellemApp.framework"
                BlueprintName = "Pods-TellemApp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6A378E34F3C159A0904B92737F5ADD2"
+            BlueprintIdentifier = "5A787CB9EF6FA1BB40D2A3BB21285B23"
             BuildableName = "Pods_TellemApp.framework"
             BlueprintName = "Pods-TellemApp"
             ReferencedContainer = "container:Pods.xcodeproj">

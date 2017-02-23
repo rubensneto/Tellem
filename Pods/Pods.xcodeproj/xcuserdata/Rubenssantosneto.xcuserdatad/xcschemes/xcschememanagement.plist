@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TellemApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +52,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1ED4DFAAD25E1999D0244868457A351E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>30D7FCF8072F5D59AE1C98D94F9A6EC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38C44A02B0D1C73CF4B09BF88D600B51</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59CDDB315DD2B098E0CD9ED56B026F4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A787CB9EF6FA1BB40D2A3BB21285B23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,16 +83,6 @@
 			<true/>
 		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C03265966DE389BB4381B658B847F8DF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D6A378E34F3C159A0904B92737F5ADD2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

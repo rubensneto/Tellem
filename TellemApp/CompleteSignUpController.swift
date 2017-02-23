@@ -166,7 +166,7 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    func fetch(companyObject: CompanyObject) {
+    func fetch(_ companyObject: CompanyObject) {
         self.companyObject = companyObject
     }
     

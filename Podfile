@@ -17,5 +17,6 @@ target 'TellemApp' do
 	pod 'SCLAlertView'
 	pod 'GoogleMaps'
   	pod 'GooglePlaces'
+	pod 'JSQMessagesViewController'
 
 end

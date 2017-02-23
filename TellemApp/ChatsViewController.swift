@@ -63,6 +63,14 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let conversationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "conversationViewController") as! ConversationViewController
+        conversationViewController.senderId = FIRAuth.auth()?.currentUser?.uid
+        conversationViewController.senderDisplayName = FIRAuth.auth()?.currentUser?.displayName
+        navigationController?.pushViewController(conversationViewController, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: 76)
     }

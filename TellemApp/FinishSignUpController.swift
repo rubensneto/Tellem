@@ -63,7 +63,7 @@ class FinishSignUpController: UIViewController, UITextViewDelegate, CompanyObjec
         }
     }
     
-    func fetch(companyObject: CompanyObject) {
+    func fetch(_ companyObject: CompanyObject) {
         self.companyObject = companyObject
     }
 }
