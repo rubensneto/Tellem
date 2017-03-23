@@ -12,6 +12,10 @@ import CoreData
 import JSQSystemSoundPlayer
 
 class ChatsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
+
+    //fetchRequest.predicate = NSPredicate(format: "receiver.id = %@", currenUserId)
+    
+    let currenUserId = FIRAuth.auth()?.currentUser?.uid
     
     override func viewDidLoad() {
         tabBarItem.isEnabled = true
@@ -24,7 +28,6 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         } catch let error {
             print(error)
         }
-        
         collectionView?.allowsMultipleSelection = true
     }
     
@@ -45,6 +48,7 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         if type == .insert {
             print("Did change an object", anObject)
             blockOperations.append(BlockOperation(block: {
+                
                 self.collectionView?.insertItems(at: [newIndexPath!])
             }))
         }

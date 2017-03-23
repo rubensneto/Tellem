@@ -19,7 +19,6 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     
-    
     lazy var fetchedResultsController: NSFetchedResultsController<Message> = {
         let fetchRequest = NSFetchRequest<Message>(entityName: "Message")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
@@ -38,7 +37,15 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
         do {
             try fetchedResultsController.performFetch()
             if let previousMessages = fetchedResultsController.sections?[0].objects as? [Message] {
-                jsqMessages = convert(messages: previousMessages)
+                for message in previousMessages {
+                    if message.receiver.id == FIRAuth.auth()?.currentUser?.uid &&
+                        message.senderId == tellemUser.id {
+                        jsqMessages.append(convert(message: message))
+                    } else if message.senderId == FIRAuth.auth()?.currentUser?.uid &&
+                        message.receiver.id == tellemUser.id {
+                        jsqMessages.append(convert(message: message))
+                    }
+                }
                 jsqMessages = jsqMessages?.sorted(by: { $0.date?.compare($1.date as Date) == .orderedAscending })
                 collectionView.reloadData()
             }
@@ -131,10 +138,7 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = fetchedResultsController.sections?[0].numberOfObjects {
-            return count
-        }
-        return 0
+        return jsqMessages.count
     }
     
     func convert(messages: [Message]?) -> [JSQMessage]? {
