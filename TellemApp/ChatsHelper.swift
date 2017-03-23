@@ -8,103 +8,90 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 extension ChatsViewController {
     
-    
-    
     func setData(){
-        
         clearEntities("TellemUser")
         clearEntities("Message")
-        
-        let appDell = UIApplication.shared.delegate as! AppDelegate
-        let context = appDell.persistentContainer.viewContext
-        
-        let mark = NSEntityDescription.insertNewObject(forEntityName: "TellemUser", into: context) as! TellemUser
-        mark.name = "Mark Zukerberg"
-        mark.photoURL = "mark"
-        mark.business = "Facebook CEO"
-        
-        let messageMark = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-        messageMark.date = NSDate()
-        messageMark.user = mark
-        messageMark.text = "How much for the app?"
-        
-        let steve = NSEntityDescription.insertNewObject(forEntityName: "TellemUser", into: context) as! TellemUser
-        steve.name = "Steve Jobs"
-        steve.photoURL = "steve"
-        steve.business = "Apple CEO"
-        
-        let messageSteve = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-        messageSteve.date = NSDate().addingTimeInterval(-60)
-        messageSteve.user = steve
-        messageSteve.text = "I cover any offer for this application!"
-        
-        let bill = NSEntityDescription.insertNewObject(forEntityName: "TellemUser", into: context) as! TellemUser
-        bill.name = "Bill Gates"
-        bill.photoURL = "bill"
-        bill.business = "Microsoft CEO"
-        
-        let messageBill = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-        messageBill.date = NSDate().addingTimeInterval(-120)
-        messageBill.user = bill
-        messageBill.text = "Did you patent already?"
-        
-        let messageBill2 = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-        messageBill2.date = NSDate().addingTimeInterval(-180)
-        messageBill2.user = bill
-        messageBill2.text = "Lets talk dude"
-        
-        appDell.saveContext()
-        
-        loadMessagesData()
     }
     
-    func loadMessagesData(){
-        let appDell = UIApplication.shared.delegate as! AppDelegate
-        let context = appDell.persistentContainer.viewContext
+    
+    static func createMessage(to user: TellemUser, date: NSDate, text: String, context: NSManagedObjectContext, senderId: String) -> Message {
+        let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+        message.receiver = user
+        message.date = date
+        message.text = text
+        message.senderId = senderId
         
-        if let users = fetchUsers() {
-            
-            messages = [Message]()
-            
-            for user in users {
-                
-                let sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-                let request: NSFetchRequest<Message> = Message.fetchRequest()
-                request.sortDescriptors = sortDescriptors
-                request.predicate = NSPredicate(format: "user.name = %@", user.name!)
-                request.fetchLimit = 1
-                
-                do {
-                    
-                    let fetchedMessages = try context.fetch(request) as [Message]
-                    messages?.append(contentsOf: fetchedMessages)
-                    
-                } catch let error {
-                    print(error)
-                }
-                
-                messages?.sort(by: { $0.date?.compare($1.date as! Date) == .orderedDescending })
-            }
+        
+        user.lastMessage = message
+        
+        return message
+    }
+    
+    func observeNewMessage(){
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+            let receiverMessagesRef = FIRDatabase.database().reference().child("receiverMessages").child(uid)
+            receiverMessagesRef.observe(.childAdded, with: { (snapshot) in
+                let messageRef = FIRDatabase.database().reference().child("messages").child(snapshot.key)
+                messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    let context = appDel.persistentContainer.viewContext
+                    self.receiveMessage(snapshot: snapshot, context: context, fetchedResultsController: self.fetchedResultsController, completion: { 
+                        receiverMessagesRef.removeValue()
+                        messageRef.removeValue()
+                    })
+                }, withCancel: nil)
+            }, withCancel: nil)
         }
     }
     
-    fileprivate func fetchUsers() -> [TellemUser]? {
-        let appDell = UIApplication.shared.delegate as! AppDelegate
-        let context = appDell.persistentContainer.viewContext
+   
         
-        let request: NSFetchRequest<TellemUser> = TellemUser.fetchRequest()
+    func receiveMessage(snapshot: FIRDataSnapshot, context: NSManagedObjectContext, fetchedResultsController: NSFetchedResultsController<TellemUser>, completion: @escaping ()->()){
+        var dictionary = snapshot.value as! [String: AnyObject]
+        let senderRef = FIRDatabase.database().reference().child("users").child(dictionary["senderId"] as! String)
+        let timestamp = dictionary["timestamp"] as! Int
+        let date = NSDate.init(timeIntervalSince1970: TimeInterval(timestamp))
         
-        do {
-            return try context.fetch(request)
-        } catch let error {
+        senderRef.observeSingleEvent(of: .value, with: { (snap) in
+            let userDict = snap.value as! [String: AnyObject]
+            if fetchedResultsController.fetchedObjects!.count > 0 {
+                for user in fetchedResultsController.fetchedObjects! {
+                    if user.id == snap.key {
+                        if user.isBlocked == false {
+                            ChatsViewController.createMessage(to: user, date: date, text: dictionary["text"] as! String, context: context, senderId: user.id!)
+                        } else {
+                            completion()
+                        }
+                    } else {
+                        let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
+                        ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
+                    }
+                }
+            } else {
+                let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
+                ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
+            }
+            
+            completion()
+        }) { (error) in
             print(error)
         }
-        return nil
     }
-
+    
+    func createUser(id: String, dictionary: [String : AnyObject], context: NSManagedObjectContext) -> TellemUser {
+        let tellemUser = NSEntityDescription.insertNewObject(forEntityName: "TellemUser", into: context) as! TellemUser
+        tellemUser.id = id
+        tellemUser.name = dictionary["name"] as? String
+        tellemUser.business = dictionary["businessField"] as? String
+        tellemUser.photoURL = dictionary["photoURL"] as? String
+        
+        return tellemUser
+    }
+    
     func clearEntities(_ name: String){
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
@@ -125,4 +112,5 @@ extension ChatsViewController {
             print(error)
         }
     }
+    
 }

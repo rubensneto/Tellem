@@ -20,7 +20,6 @@
 		D71047441E5D837C00E7929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047391E5D837C00E7929D /* LoginViewController.swift */; };
 		D71047451E5D837C00E7929D /* ProfessionalSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */; };
 		D71047461E5D837C00E7929D /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */; };
-		D71047471E5D837C00E7929D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473C1E5D837C00E7929D /* SearchViewController.swift */; };
 		D71047481E5D837C00E7929D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473D1E5D837C00E7929D /* SettingsViewController.swift */; };
 		D71047491E5D837C00E7929D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710473E1E5D837C00E7929D /* SignUpController.swift */; };
 		D71047521E5D843B00E7929D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D710474D1E5D843B00E7929D /* ActivityIndicator.swift */; };
@@ -31,6 +30,8 @@
 		D71047591E5D84B900E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047571E5D84B900E7929D /* Main.storyboard */; };
 		D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */; };
 		D71525111E5F036400D7ED68 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71525101E5F036400D7ED68 /* ConversationViewController.swift */; };
+		D7C65E771E7A728E00655DDB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C65E761E7A728E00655DDB /* ContactInfoViewController.swift */; };
+		D7C943CE1E6D5B1A009C9613 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C943CD1E6D5B1A009C9613 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +51,6 @@
 		D71047391E5D837C00E7929D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalSignUpController.swift; sourceTree = "<group>"; };
 		D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		D710473C1E5D837C00E7929D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D710473D1E5D837C00E7929D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D710473E1E5D837C00E7929D /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		D710474D1E5D843B00E7929D /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		D71047581E5D84B900E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71525101E5F036400D7ED68 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		D7C65E761E7A728E00655DDB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		D7C943CD1E6D5B1A009C9613 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F1181C58917D4159BDD3189A /* Pods_TellemApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TellemApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,9 +116,9 @@
 		D710471D1E5D7E4A00E7929D /* TellemApp */ = {
 			isa = PBXGroup;
 			children = (
+				D710471E1E5D7E4B00E7929D /* AppDelegate.swift */,
 				D710474C1E5D841000E7929D /* Helpers */,
 				D71047331E5D825C00E7929D /* Controllers */,
-				D710471E1E5D7E4B00E7929D /* AppDelegate.swift */,
 				D71047281E5D7E4B00E7929D /* Assets.xcassets */,
 				D71047571E5D84B900E7929D /* Main.storyboard */,
 				D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */,
@@ -130,18 +132,19 @@
 		D71047331E5D825C00E7929D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D71047341E5D837C00E7929D /* ChatsViewController.swift */,
-				D71047351E5D837C00E7929D /* ChooseSignUpController.swift */,
-				D71047361E5D837C00E7929D /* CompleteSignUpController.swift */,
-				D71047371E5D837C00E7929D /* ContactsViewController.swift */,
-				D71047381E5D837C00E7929D /* FinishSignUpController.swift */,
 				D71047391E5D837C00E7929D /* LoginViewController.swift */,
-				D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */,
-				D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */,
-				D710473C1E5D837C00E7929D /* SearchViewController.swift */,
-				D710473D1E5D837C00E7929D /* SettingsViewController.swift */,
+				D71047351E5D837C00E7929D /* ChooseSignUpController.swift */,
 				D710473E1E5D837C00E7929D /* SignUpController.swift */,
+				D710473A1E5D837C00E7929D /* ProfessionalSignUpController.swift */,
+				D71047361E5D837C00E7929D /* CompleteSignUpController.swift */,
+				D71047381E5D837C00E7929D /* FinishSignUpController.swift */,
+				D710473B1E5D837C00E7929D /* ResetPasswordViewController.swift */,
+				D71047341E5D837C00E7929D /* ChatsViewController.swift */,
+				D71047371E5D837C00E7929D /* ContactsViewController.swift */,
+				D7C943CD1E6D5B1A009C9613 /* SearchViewController.swift */,
+				D710473D1E5D837C00E7929D /* SettingsViewController.swift */,
 				D71525101E5F036400D7ED68 /* ConversationViewController.swift */,
+				D7C65E761E7A728E00655DDB /* ContactInfoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,14 +295,15 @@
 				D71047461E5D837C00E7929D /* ResetPasswordViewController.swift in Sources */,
 				D71047421E5D837C00E7929D /* ContactsViewController.swift in Sources */,
 				D71047431E5D837C00E7929D /* FinishSignUpController.swift in Sources */,
-				D71047471E5D837C00E7929D /* SearchViewController.swift in Sources */,
 				D710471F1E5D7E4B00E7929D /* AppDelegate.swift in Sources */,
+				D7C943CE1E6D5B1A009C9613 /* SearchViewController.swift in Sources */,
 				D71525111E5F036400D7ED68 /* ConversationViewController.swift in Sources */,
 				D71047411E5D837C00E7929D /* CompleteSignUpController.swift in Sources */,
 				D71047491E5D837C00E7929D /* SignUpController.swift in Sources */,
 				D71047401E5D837C00E7929D /* ChooseSignUpController.swift in Sources */,
 				D71047481E5D837C00E7929D /* SettingsViewController.swift in Sources */,
 				D710473F1E5D837C00E7929D /* ChatsViewController.swift in Sources */,
+				D7C65E771E7A728E00655DDB /* ContactInfoViewController.swift in Sources */,
 				D71047561E5D843B00E7929D /* UserObject.swift in Sources */,
 				D71047271E5D7E4B00E7929D /* TellemApp.xcdatamodeld in Sources */,
 				D71047531E5D843B00E7929D /* ChatsHelper.swift in Sources */,

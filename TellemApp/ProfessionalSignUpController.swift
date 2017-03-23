@@ -23,17 +23,14 @@ class ProfessionalSignUpController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     var delegate: CompanyObjectDelegate? = nil
-    var databaseChild: String!
     var activityIndicator = ActivityIndicatorController()
-    
     let databaseService = DatabaseService()
     let alertView = SCLAlertView()
+    var isProfessional: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        
-        databaseChild = "companies"
         
         nextButton.backgroundColor = UIColor(red: 77/255, green: 194/255, blue: 71/255, alpha: 0.3)
         nextButton.layer.cornerRadius = 3
@@ -44,10 +41,10 @@ class ProfessionalSignUpController: UIViewController {
         switch selectSegmentControll.selectedSegmentIndex {
         case 0:
             nameTextField.placeholder = "COMPANY NAME"
-            databaseChild = "companies"
+            isProfessional = false
         case 1:
             nameTextField.placeholder = "FULL NAME"
-            databaseChild = "professionals"
+            isProfessional = true
         default:
             break
         }
@@ -73,8 +70,8 @@ class ProfessionalSignUpController: UIViewController {
                     
                     companyObject.name = self.nameTextField.text!
                     companyObject.email = self.emailTextfield.text!
-                    companyObject.child = self.databaseChild
                     companyObject.uid = user!.uid
+                    companyObject.isProfessional = self.isProfessional
                     
                     let completeSignUpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "completeSignUp") as! CompleteSignUpController
                     
@@ -82,7 +79,6 @@ class ProfessionalSignUpController: UIViewController {
                     
                     if self.delegate != nil {
                         completeSignUpController.companyObject = companyObject
-                        completeSignUpController.databaseChild = self.databaseChild
                         self.navigationController?.pushViewController(completeSignUpController, animated: true)
                     } else {
                         print("Delegate is nil")

@@ -25,7 +25,6 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
     var companyObject = CompanyObject()
     let alertView = SCLAlertView()
     let databaseService = DatabaseService()
-    var databaseChild: String!
     let locationManager = CLLocationManager()
     var delegate: CompanyObjectDelegate? = nil
     var activityIndicator = ActivityIndicatorController()
@@ -43,7 +42,7 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
         businessTextField.text = companyObject.businessField ?? ""
         addressTextField.text = companyObject.formattedAddress ?? ""
         
-        if databaseChild == "companies" {
+        if companyObject.isProfessional == false {
             businessTextField.placeholder = "Business (e.g. Restaurant)"
         } else {
             businessTextField.placeholder = "Profession (e.g. Plumber)"
@@ -115,6 +114,8 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true) {
             self.addressTextField.text = place.formattedAddress
             self.companyObject.placeID = place.placeID
+            self.companyObject.latitude = String(place.coordinate.latitude)
+            self.companyObject.longitude = String(place.coordinate.longitude)
             self.companyObject.formattedAddress = place.formattedAddress
             if self.businessTextField.text?.isEmpty != true {
                 self.nextButton.isUserInteractionEnabled = true
@@ -152,7 +153,6 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
             
             if delegate != nil {
                 finishSignUpController.companyObject = self.companyObject
-                finishSignUpController.databaseChild = self.databaseChild
                 navigationController?.pushViewController(finishSignUpController, animated: true)
             }
         }

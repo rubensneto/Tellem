@@ -15,7 +15,6 @@ class FinishSignUpController: UIViewController, UITextViewDelegate, CompanyObjec
     @IBOutlet weak var businessDescriptionTextView: UITextView!
     @IBOutlet weak var signUpButton: UIButton!
     
-    var databaseChild: String!
     var companyObject: CompanyObject!
     let alertView = SCLAlertView()
     let databaseService = DatabaseService()
@@ -27,7 +26,7 @@ class FinishSignUpController: UIViewController, UITextViewDelegate, CompanyObjec
         signUpButton.isUserInteractionEnabled = false
         businessDescriptionTextView.delegate = self
         
-        if databaseChild == "companies" {
+        if companyObject.isProfessional == false {
             descriptionLabel.text = "Write a short description about your company:"
         } else {
             descriptionLabel.text = "Write a short description about you and/or your services:"

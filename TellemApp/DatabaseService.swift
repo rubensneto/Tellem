@@ -96,13 +96,16 @@ class DatabaseService {
             "name" : company.name,
             "email" : company.email,
             "placeID" : company.placeID,
+            "latitude" : company.latitude,
+            "longitude" : company.longitude,
             "formattedAddress" : company.formattedAddress,
             "businessField" : company.businessField,
             "businessDescription" : company.businessDescription,
-            "photoURL" : company.photoURL
+            "photoURL" : company.photoURL,
+            "isProfessional" : company.isProfessional
         ]
         
-        let companyRef = ref.child(company.child).child(company.uid)
+        let companyRef = ref.child("users").child(company.uid)
         companyRef.updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (error, dataRef) in
             if error != nil {
                 let subTitle = "We are not able to create your account at the moment:\n\(error?.localizedDescription)"
@@ -180,6 +183,30 @@ class DatabaseService {
                     if let data = imageData {
                         imageView.image = UIImage(data: data)
                     }
+                }
+            })
+        }
+    }
+    
+    func firebaseUpload(message: Message, to user: TellemUser, completion: @escaping () -> ()){
+        
+        let messagesRef = ref.child("messages")
+        let childRef = messagesRef.childByAutoId()
+        let timestamp = Int((message.date?.timeIntervalSince1970)!) as NSNumber
+        if let senderId = FIRAuth.auth()?.currentUser?.uid {
+            let values: [String : Any] = ["text": message.text!,
+                                          "timestamp": timestamp,
+                                          "senderId": senderId,
+                                          "receiverId": user.id!]
+            childRef.updateChildValues(values, withCompletionBlock: { (error, reference) in
+                if error != nil {
+                    print(error!)
+                } else {
+                    let receiverMessagesRef = FIRDatabase.database().reference().child("receiverMessages").child(user.id!)
+                    let messageId = childRef.key
+                    receiverMessagesRef.updateChildValues([messageId : 1])
+                    
+                    completion()
                 }
             })
         }

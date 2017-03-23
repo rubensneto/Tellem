@@ -12,14 +12,14 @@ import FBSDKCoreKit
 import Firebase
 import SCLAlertView
 import GooglePlaces
+import JSQSystemSoundPlayer
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSPlacesClient.provideAPIKey("AIzaSyB9dpcbwZe5tQvbGjAn7PC6uAL19P5zJJE")
         FIRApp.configure()
@@ -29,7 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func isLoggedIn(){
-        if FIRAuth.auth()?.currentUser != nil {
+        let currentUser = FIRAuth.auth()?.currentUser
+        if currentUser != nil {
+            let userRef = FIRDatabase.database().reference().child("users").child(currentUser!.uid).child("name")
+            
+            userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    UserDefaults().set(snapshot.value as! String, forKey: "username")
+                }
+            })
             let chatsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             window?.rootViewController = chatsController
         } else {
@@ -37,11 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    
+    var blockOperations = [BlockOperation]()
+    
+    
     open func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url as URL!, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         
         return handled
     }
+    
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -111,6 +125,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
 }
-

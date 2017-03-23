@@ -2,17 +2,23 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="senderId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TellemUser" inverseName="messages" inverseEntity="TellemUser" syncable="YES"/>
+        <relationship name="receiver" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TellemUser" inverseName="messages" inverseEntity="TellemUser" syncable="YES"/>
     </entity>
     <entity name="TellemUser" representedClassName="TellemUser" syncable="YES" codeGenerationType="class">
         <attribute name="business" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
+        <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="receiver" inverseEntity="Message" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TellemUser" positionX="-342" positionY="-162" width="128" height="103"/>
-        <element name="Message" positionX="-54" positionY="18" width="128" height="88"/>
+        <element name="Message" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="TellemUser" positionX="-342" positionY="-162" width="128" height="180"/>
     </elements>
 </model>

@@ -21,12 +21,14 @@ class CompanyObject {
     var name: String!
     var email: String!
     var placeID: String!
+    var latitude: String!
+    var longitude: String!
     var formattedAddress: String!
     var businessDescription: String!
     var businessField: String!
     var photoURL: String!
+    var isProfessional: Bool!
     var ref: FIRDatabaseReference?
-    var child: String!
     var key: String?
     var uid: String!
 }
