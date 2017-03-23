@@ -79,7 +79,7 @@ class ContactInfoViewController: UIViewController {
                 let messages = try context.fetch(fetchRequest)
                 
                 for message in messages {
-                    if message.senderId == self.tellemUser?.id || message.receiver == self.tellemUser {
+                    if message.senderId == self.tellemUser?.id || message.user == self.tellemUser {
                         context.delete(message)
                     }
                 }

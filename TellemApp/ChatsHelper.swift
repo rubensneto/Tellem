@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import JSQSystemSoundPlayer
 
 extension ChatsViewController {
     
@@ -20,7 +21,7 @@ extension ChatsViewController {
     
     static func createMessage(to user: TellemUser, date: NSDate, text: String, context: NSManagedObjectContext, senderId: String) -> Message {
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-        message.receiver = user
+        message.user = user
         message.date = date
         message.text = text
         message.senderId = senderId
@@ -39,7 +40,8 @@ extension ChatsViewController {
                 messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     let appDel = UIApplication.shared.delegate as! AppDelegate
                     let context = appDel.persistentContainer.viewContext
-                    self.receiveMessage(snapshot: snapshot, context: context, fetchedResultsController: self.fetchedResultsController, completion: { 
+                    self.receiveMessage(snapshot: snapshot, context: context, fetchedResultsController: self.fetchedResultsController, completion: {
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
                         receiverMessagesRef.removeValue()
                         messageRef.removeValue()
                     })

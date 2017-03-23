@@ -13,16 +13,17 @@ import Firebase
 class ConversationViewController: JSQMessagesViewController, NSFetchedResultsControllerDelegate {
     
     var tellemUser: TellemUser?
+    let currentUserId = FIRAuth.auth()?.currentUser?.uid
     
     var jsqMessages: [JSQMessage]?
     let bubbleFactory = JSQMessagesBubbleImageFactory()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
-    
+
     lazy var fetchedResultsController: NSFetchedResultsController<Message> = {
         let fetchRequest = NSFetchRequest<Message>(entityName: "Message")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        fetchRequest.predicate = NSPredicate(format: "receiver.name = %@", self.tellemUser!.name!)
+        fetchRequest.predicate = NSPredicate(format: "user.id = %@", self.tellemUser!.id!)
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
         let frc = NSFetchedResultsController<Message>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -37,15 +38,7 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
         do {
             try fetchedResultsController.performFetch()
             if let previousMessages = fetchedResultsController.sections?[0].objects as? [Message] {
-                for message in previousMessages {
-                    if message.receiver.id == FIRAuth.auth()?.currentUser?.uid &&
-                        message.senderId == tellemUser.id {
-                        jsqMessages.append(convert(message: message))
-                    } else if message.senderId == FIRAuth.auth()?.currentUser?.uid &&
-                        message.receiver.id == tellemUser.id {
-                        jsqMessages.append(convert(message: message))
-                    }
-                }
+                jsqMessages = convert(messages: previousMessages)
                 jsqMessages = jsqMessages?.sorted(by: { $0.date?.compare($1.date as Date) == .orderedAscending })
                 collectionView.reloadData()
             }
@@ -138,7 +131,10 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return jsqMessages.count
+        if let count = fetchedResultsController.sections?[0].numberOfObjects {
+            return count
+        }
+        return 0
     }
     
     func convert(messages: [Message]?) -> [JSQMessage]? {

@@ -13,9 +13,7 @@ import JSQSystemSoundPlayer
 
 class ChatsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
 
-    //fetchRequest.predicate = NSPredicate(format: "receiver.id = %@", currenUserId)
-    
-    let currenUserId = FIRAuth.auth()?.currentUser?.uid
+    let currentUserId = FIRAuth.auth()?.currentUser?.uid
     
     override func viewDidLoad() {
         tabBarItem.isEnabled = true
@@ -41,14 +39,16 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         frc.delegate = self
         return frc
     }()
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView?.reloadData()
+    }
     var blockOperations = [BlockOperation]()
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         if type == .insert {
             print("Did change an object", anObject)
             blockOperations.append(BlockOperation(block: {
-                
                 self.collectionView?.insertItems(at: [newIndexPath!])
             }))
         }
