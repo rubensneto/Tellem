@@ -11,9 +11,6 @@ import Firebase
 import GooglePlaces
 import SCLAlertView
 
-
-
-
 class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, GMSAutocompleteViewControllerDelegate, CompanyObjectDelegate, UITextViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -43,9 +40,9 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
         addressTextField.text = companyObject.formattedAddress ?? ""
         
         if companyObject.isProfessional == false {
-            businessTextField.placeholder = "Business (e.g. Restaurant)"
+            businessTextField.placeholder = "Business (e.g. Mobile Application)"
         } else {
-            businessTextField.placeholder = "Profession (e.g. Plumber)"
+            businessTextField.placeholder = "Profession (e.g. iOS Developer)"
         }
         
     }
@@ -114,8 +111,10 @@ class CompleteSignUpController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true) {
             self.addressTextField.text = place.formattedAddress
             self.companyObject.placeID = place.placeID
-            self.companyObject.latitude = String(place.coordinate.latitude)
-            self.companyObject.longitude = String(place.coordinate.longitude)
+            self.companyObject.latitude = place.coordinate.latitude as NSNumber
+            self.companyObject.longitude = place.coordinate.longitude as NSNumber
+            UserDefaults().setValue(place.coordinate.latitude, forKey: "userLatitude")
+            UserDefaults().setValue(place.coordinate.longitude, forKey: "userLongitude")
             self.companyObject.formattedAddress = place.formattedAddress
             if self.businessTextField.text?.isEmpty != true {
                 self.nextButton.isUserInteractionEnabled = true

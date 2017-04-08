@@ -14,11 +14,12 @@
         <attribute name="isBlocked" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readMessages" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
     </entity>
     <elements>
         <element name="Message" positionX="-54" positionY="18" width="128" height="105"/>
-        <element name="TellemUser" positionX="-342" positionY="-162" width="128" height="180"/>
+        <element name="TellemUser" positionX="-342" positionY="-162" width="128" height="195"/>
     </elements>
 </model>

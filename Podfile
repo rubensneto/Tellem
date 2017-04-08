@@ -7,9 +7,7 @@ target 'TellemApp' do
 
   # Pods for TellemApp
 
-	pod 'FBSDKCoreKit'
-	pod 'FBSDKShareKit'
-	pod 'FBSDKLoginKit'
+	
 	pod ‘Firebase/Core'
   	pod ‘Firebase/Database'
   	pod ‘Firebase/Auth’

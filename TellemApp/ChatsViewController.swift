@@ -39,10 +39,12 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         frc.delegate = self
         return frc
     }()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView?.reloadData()
     }
+    
     var blockOperations = [BlockOperation]()
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -81,17 +83,17 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         let tellemUser = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath)
-        let imageView = cell.viewWithTag(1) as! UIImageView
+        let profileImageView = cell.viewWithTag(1) as! UIImageView
         let contactNameLabel = cell.viewWithTag(2) as! UILabel
         let messageLabel = cell.viewWithTag(3) as! UILabel
         let timeLabel = cell.viewWithTag(4) as! UILabel
         let businessLabel = cell.viewWithTag(5) as! UILabel
-        let checkoutStatusImageView = cell.viewWithTag(6) as! UIImageView
+        let newMessagesLabel = cell.viewWithTag(6) as! UILabel
         
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         
         if let photoURL = tellemUser.photoURL{
-            imageView.loadImageUsingCacheWith(urlString: photoURL)
+            profileImageView.loadImageUsingCacheWith(urlString: photoURL)
         }
         
         if let name = tellemUser.name {
@@ -102,21 +104,51 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
             businessLabel.text = business
         }
         
-        if let date = tellemUser.lastMessage?.date {
+        if let date = tellemUser.lastMessage?.date as? Date {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "hh:mm"
-            timeLabel.text = dateFormatter.string(from: date as Date)
+            let daysAgo = date.daysBetweenDate(toDate: Date())
+            switch daysAgo {
+            case 0 :
+                dateFormatter.dateFormat = "hh:mm"
+                timeLabel.text = dateFormatter.string(from: date as Date)
+            case 1 :
+                timeLabel.text = "Yesterday"
+            default:
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                timeLabel.text = dateFormatter.string(from: date as Date)
+            }
+            
         }
         
         if let text = tellemUser.lastMessage?.text {
             messageLabel.text = text
         }
         
+        newMessagesLabel.layer.cornerRadius = newMessagesLabel.frame.width / 2
+        
+        var newMessages = 0
+        if ((tellemUser.messages?.count) != nil) {
+            newMessages = (tellemUser.messages?.count)! - Int(tellemUser.readMessages)
+        }
+        
+        if tellemUser.lastMessage?.senderId == UserDefaults().value(forKey: "userId") as? String {
+            newMessages = 0
+        }
+        
+        if newMessages > 0 {
+            newMessagesLabel.text = "\(newMessages)"
+            newMessagesLabel.backgroundColor = UIColor.jsq_messageBubbleBlue()
+        } else {
+            newMessagesLabel.backgroundColor = UIColor.white
+        }
+        
         return cell
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let tellemUser = fetchedResultsController.object(at: indexPath)
+        tellemUser.readMessages = Int16((tellemUser.messages?.count)!)
         
         let conversationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "conversationViewController") as! ConversationViewController
         conversationViewController.senderId = FIRAuth.auth()?.currentUser?.uid
@@ -139,6 +171,4 @@ class ChatsViewController: UICollectionViewController, UICollectionViewDelegateF
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.white
     }
-    
-    
 }

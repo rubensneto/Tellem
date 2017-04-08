@@ -26,7 +26,7 @@ class ProfessionalSignUpController: UIViewController {
     var activityIndicator = ActivityIndicatorController()
     let databaseService = DatabaseService()
     let alertView = SCLAlertView()
-    var isProfessional: Bool!
+    var isProfessional = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +40,11 @@ class ProfessionalSignUpController: UIViewController {
     @IBAction func toggleSegmentControl(_ sender: UISegmentedControl) {
         switch selectSegmentControll.selectedSegmentIndex {
         case 0:
-            nameTextField.placeholder = "COMPANY NAME"
-            isProfessional = false
-        case 1:
             nameTextField.placeholder = "FULL NAME"
             isProfessional = true
+        case 1:
+            nameTextField.placeholder = "COMPANY NAME"
+            isProfessional = false
         default:
             break
         }
@@ -71,6 +71,7 @@ class ProfessionalSignUpController: UIViewController {
                     companyObject.name = self.nameTextField.text!
                     companyObject.email = self.emailTextfield.text!
                     companyObject.uid = user!.uid
+                    UserDefaults().set(user!.uid, forKey: "userId")
                     companyObject.isProfessional = self.isProfessional
                     
                     let completeSignUpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "completeSignUp") as! CompleteSignUpController
@@ -104,9 +105,5 @@ class ProfessionalSignUpController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    @IBAction func dismissViewController(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
     }
 }

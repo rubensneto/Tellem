@@ -63,12 +63,17 @@ class ConversationViewController: JSQMessagesViewController, NSFetchedResultsCon
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(showContactInfo))
+        
+        self.inputToolbar.contentView.leftBarButtonItem = nil
+        
+        tellemUser?.readMessages = Int16((tellemUser?.messages?.count)!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationItem.backBarButtonItem?.title = "Chat"
+        tellemUser?.readMessages = Int16((tellemUser?.messages?.count)!)
     }
 
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {

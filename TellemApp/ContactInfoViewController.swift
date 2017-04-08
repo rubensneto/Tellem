@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import SCLAlertView
-
+import FirebaseDatabase
 
 class ContactInfoViewController: UIViewController {
     
@@ -42,18 +42,40 @@ class ContactInfoViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        
         if let photoURL = tellemUser?.photoURL {
             profileImageView.loadImageUsingCacheWith(urlString: photoURL)
-            
         } else {
             profileImageView.image = UIImage(named: "avatarImage")
         }
+        
         if let name = tellemUser?.name {
             contactNameLabel.text = name
         }
-        contactProfessionLabel.text = tellemUser?.business ?? "Client"
-        contactCityLabel.text = tellemUser?.city ?? ""
-        businessDescriptionLabel.text = tellemUser?.businessDescription ?? ""
+        
+        let tellemUserRef = FIRDatabase.database().reference().child("users").child(tellemUser!.id!)
+        tellemUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.value is NSNull {
+                self.contactProfessionLabel.text = "This account is no longer active"
+                return
+            }
+            let tellemUserDictionary = snapshot.value as! [String : AnyObject]
+            self.contactProfessionLabel.text = tellemUserDictionary["businessField"] as? String ?? ""
+            self.businessDescriptionLabel.text = tellemUserDictionary["businessDescription"] as? String ?? ""
+            let tellemUserLatitude = tellemUserDictionary["latitude"] as? Double
+            let tellemUserLongitude = tellemUserDictionary["longitude"] as? Double
+            let userLatitude = UserDefaults().value(forKey: "userLatitude") as? Double
+            let userLongitude = UserDefaults().value(forKey: "userLongitude") as? Double
+            if let distance = SearchViewController.findDistance(professionalLatitude: tellemUserLatitude!, professionalLongitude: tellemUserLongitude!, userLatitude: userLatitude!, userLongitude: userLongitude!) {
+                self.contactCityLabel.text = SearchViewController.format(distance: distance)
+            }
+            
+        }) { (error) in
+            print(error)
+        }
+        
         
         if tellemUser?.isBlocked == true {
             blockUserButton.setTitle("Unblock this Contact", for: .normal)

@@ -10,14 +10,12 @@ import UIKit
 import CoreData
 import Firebase
 import JSQSystemSoundPlayer
+import UserNotifications
 
 extension ChatsViewController {
     
-    func setData(){
-        clearEntities("TellemUser")
-        clearEntities("Message")
-    }
-    
+        
+    // @discardableResult ??????
     
     static func createMessage(to user: TellemUser, date: NSDate, text: String, context: NSManagedObjectContext, senderId: String) -> Message {
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
@@ -33,25 +31,23 @@ extension ChatsViewController {
     }
     
     func observeNewMessage(){
-        if let uid = FIRAuth.auth()?.currentUser?.uid {
-            let receiverMessagesRef = FIRDatabase.database().reference().child("receiverMessages").child(uid)
-            receiverMessagesRef.observe(.childAdded, with: { (snapshot) in
-                let messageRef = FIRDatabase.database().reference().child("messages").child(snapshot.key)
-                messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    let appDel = UIApplication.shared.delegate as! AppDelegate
-                    let context = appDel.persistentContainer.viewContext
-                    self.receiveMessage(snapshot: snapshot, context: context, fetchedResultsController: self.fetchedResultsController, completion: {
-                        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-                        receiverMessagesRef.removeValue()
-                        messageRef.removeValue()
-                    })
-                }, withCancel: nil)
+        let uid = UserDefaults().value(forKey: "userId") as! String
+        let receiverMessagesRef = FIRDatabase.database().reference().child("receiverMessages").child(uid)
+        receiverMessagesRef.observe(.childAdded, with: { (snapshot) in
+            let messageRef = FIRDatabase.database().reference().child("messages").child(snapshot.key)
+            messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                let context = appDel.persistentContainer.viewContext
+                self.receiveMessage(snapshot: snapshot, context: context, fetchedResultsController: self.fetchedResultsController, completion: {
+                    JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                    receiverMessagesRef.removeValue()
+                    messageRef.removeValue()
+                })
             }, withCancel: nil)
-        }
+        }, withCancel: nil)
+        
     }
     
-   
-        
     func receiveMessage(snapshot: FIRDataSnapshot, context: NSManagedObjectContext, fetchedResultsController: NSFetchedResultsController<TellemUser>, completion: @escaping ()->()){
         var dictionary = snapshot.value as! [String: AnyObject]
         let senderRef = FIRDatabase.database().reference().child("users").child(dictionary["senderId"] as! String)
@@ -59,25 +55,25 @@ extension ChatsViewController {
         let date = NSDate.init(timeIntervalSince1970: TimeInterval(timestamp))
         
         senderRef.observeSingleEvent(of: .value, with: { (snap) in
-            let userDict = snap.value as! [String: AnyObject]
-            if fetchedResultsController.fetchedObjects!.count > 0 {
-                for user in fetchedResultsController.fetchedObjects! {
-                    if user.id == snap.key {
-                        if user.isBlocked == false {
-                            ChatsViewController.createMessage(to: user, date: date, text: dictionary["text"] as! String, context: context, senderId: user.id!)
+            if let userDict = snap.value as? [String: AnyObject] {
+                if fetchedResultsController.fetchedObjects!.count > 0 {
+                    for user in fetchedResultsController.fetchedObjects! {
+                        if user.id == snap.key {
+                            if user.isBlocked == false {
+                                let message = ChatsViewController.createMessage(to: user, date: date, text: dictionary["text"] as! String, context: context, senderId: user.id!)
+                            } else {
+                                completion()
+                            }
                         } else {
-                            completion()
+                            let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
+                            let message = ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
                         }
-                    } else {
-                        let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
-                        ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
                     }
+                } else {
+                    let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
+                    let message = ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
                 }
-            } else {
-                let tellemUser = self.createUser(id: snap.key, dictionary: userDict, context: context)
-                ChatsViewController.createMessage(to: tellemUser, date: date, text: dictionary["text"] as! String, context: context, senderId: tellemUser.id!)
             }
-            
             completion()
         }) { (error) in
             print(error)
@@ -94,7 +90,7 @@ extension ChatsViewController {
         return tellemUser
     }
     
-    func clearEntities(_ name: String){
+    static func clearEntities(_ name: String){
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
         
@@ -107,12 +103,9 @@ extension ChatsViewController {
             for item in items {
                  context.delete(item)
             }
-            
             try context.save()
-            
         } catch let error{
             print(error)
         }
     }
-    
 }

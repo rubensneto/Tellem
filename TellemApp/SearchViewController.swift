@@ -19,12 +19,12 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating, CLLo
     @IBOutlet var searchTableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
-    var users = [[String: AnyObject]]()
-    var filteredUsers = [NSDictionary?]()
+    var professionals = [CompanyObject]()
+    var filteredProfessionals = [CompanyObject]()
     var databaseRef = FIRDatabase.database().reference()
     let locationManager = CLLocationManager()
-    var userCurrentLocation: CLLocation?
-
+    let userLatitude = UserDefaults().value(forKey: "userLatitude") as! NSNumber
+    let userLongitude = UserDefaults().value(forKey: "userLongitude") as! NSNumber
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -34,9 +34,8 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating, CLLo
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        askForUserLocation()
-        
-        }
+        queryProfessionals()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -44,31 +43,12 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating, CLLo
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text! != "" {
-            return filteredUsers.count
+            return filteredProfessionals.count
         }
         return 0
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        filteredContext(searchText: searchController.searchBar.text!)
-    }
     
-    func filteredContext(searchText: String) {
-        var results = [NSDictionary?]()
-        for user in users {
-            if let business = user["businessField"] as? String,
-                let name = user["name"] as? String , let id = user["key"] as? String {
-                if (business.lowercased().contains(searchText.lowercased())) ||
-                    (name.lowercased().contains(searchText.lowercased())) &&
-                    id != FIRAuth.auth()?.currentUser?.uid{
-                    results.append(user as NSDictionary?)
-                }
-            }
-        }
-        filteredUsers = results
-        tableView.reloadData()
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
         
@@ -78,90 +58,96 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating, CLLo
         let distanceLabel = cell.viewWithTag(4) as! UILabel
         
         imageView.layer.cornerRadius = imageView.frame.width / 2
-    
-        var user: NSDictionary?
-        
+
         if searchController.isActive && searchController.searchBar.text! != "" {
-            user = filteredUsers[indexPath.row]
-            nameLabel.text = user?["name"] as? String
-            professionLabel.text = user?["businessField"] as? String
-            let profileImageURL = user?["photoURL"] as? String
-            
-            imageView.loadImageUsingCacheWith(urlString: profileImageURL!)
-            
-            if let tellemUserLocation = user?["tellemUserLocation"] as? CLLocation,
-                let distance = userCurrentLocation?.distance(from: tellemUserLocation){
-                let formattedDistance = MKDistanceFormatter()
-                formattedDistance.unitStyle = .abbreviated
-                let distanceString = formattedDistance.string(fromDistance: distance)
-                distanceLabel.text = distanceString
-            } else {
-                distanceLabel.isHidden = true
+            let professional = filteredProfessionals[indexPath.row]
+            nameLabel.text = professional.name
+            professionLabel.text = professional.businessField
+            if let photoURL = professional.photoURL {
+                imageView.loadImageUsingCacheWith(urlString: photoURL)
             }
+            distanceLabel.text = SearchViewController.format(distance: professional.distance)
         }
+        
         return cell
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        queryUsersNearby(location: userCurrentLocation)
-    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let appDell = UIApplication.shared.delegate as! AppDelegate
         let context = appDell.persistentContainer.viewContext
         
         let tellemUser = NSEntityDescription.insertNewObject(forEntityName: "TellemUser", into: context) as! TellemUser
-        tellemUser.name = filteredUsers[indexPath.row]?["name"] as? String
-        tellemUser.id = filteredUsers[indexPath.row]?["key"] as? String
-        tellemUser.photoURL = filteredUsers[indexPath.row]?["photoURL"] as? String
-        tellemUser.business = filteredUsers[indexPath.row]?["businessField"] as? String
-        tellemUser.businessDescription = filteredUsers[indexPath.row]?["businessDescription"] as? String
-        
+        tellemUser.name = filteredProfessionals[indexPath.row].name
+        tellemUser.id = filteredProfessionals[indexPath.row].uid
+        tellemUser.photoURL = filteredProfessionals[indexPath.row].photoURL
+        tellemUser.business = filteredProfessionals[indexPath.row].businessField
+        tellemUser.businessDescription = filteredProfessionals[indexPath.row].businessDescription
         
         appDell.saveContext()
         
         let conversationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "conversationViewController") as! ConversationViewController
-        conversationViewController.senderId = FIRAuth.auth()?.currentUser?.uid
+        conversationViewController.senderId = UserDefaults().value(forKey: "userId") as! String!
         conversationViewController.senderDisplayName = UserDefaults().value(forKey: "username") as! String!
         conversationViewController.tellemUser = tellemUser
         
         navigationController?.pushViewController(conversationViewController, animated: true)
     }
     
-    func askForUserLocation(){
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.userCurrentLocation = locations.last
-    }
-    
-    func queryUsersNearby(location: CLLocation?){
+    func queryProfessionals(){
         activityIndicator.startActivityIndicator(view: view)
         databaseRef.child("users").observe(.childAdded, with: { (snapshot) in
             var dictionary = snapshot.value as! [String: AnyObject]
-            print(dictionary)
-            dictionary["key"] = snapshot.key as AnyObject?
-            let userId = dictionary["key"] as? String
-            if location != nil {
-                let tellemUserLatitude = dictionary["latitude"] as! String
-                let tellemUserLongitude = dictionary["longitude"] as! String
-                let tellemUserLocation = CLLocation(latitude: Double(tellemUserLatitude)!, longitude: Double(tellemUserLongitude)!)
-                dictionary["tellemUserLocation"] = tellemUserLocation as AnyObject
-            }
-            if userId != FIRAuth.auth()?.currentUser?.uid {
-                self.users.append(dictionary)
+            let professional = CompanyObject()
+            professional.name = dictionary["name"] as! String
+            professional.businessField = dictionary["businessField"] as! String
+            professional.latitude = dictionary["latitude"] as! NSNumber
+            professional.longitude = dictionary["longitude"] as! NSNumber
+            professional.uid = snapshot.key
+            professional.photoURL = dictionary["photoURL"] as! String
+            if professional.uid != UserDefaults().value(forKey: "userId") as? String {
+                self.professionals.append(professional)
             }
             self.activityIndicator.stopActivityIndicator()
-            
         }) { (error) in
             self.activityIndicator.stopActivityIndicator()
             SCLAlertView().showError("OOPS!", subTitle: "Looks like something went wrong in your your search!")
         }
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredContext(searchText: searchController.searchBar.text!)
+    }
+    
+    func filteredContext(searchText: String) {
+        var results = [CompanyObject]()
+        for professional in self.professionals {
+            if let business = professional.businessField,
+                let name = professional.name, let id = professional.uid {
+                if (business.lowercased().contains(searchText.lowercased())) ||
+                    (name.lowercased().contains(searchText.lowercased())) &&
+                    id != UserDefaults().value(forKey: "userId") as? String {
+                    professional.distance = SearchViewController.findDistance(professionalLatitude: Double(professional.latitude), professionalLongitude: Double(professional.longitude), userLatitude: Double(self.userLatitude), userLongitude: Double(self.userLongitude))
+                    results.append(professional)
+                }
+            }
+        }
+        filteredProfessionals = results
+        filteredProfessionals.sort(by: {$0.distance < $1.distance})
+        tableView.reloadData()
+    }
+    
+    static func findDistance(professionalLatitude: Double, professionalLongitude: Double, userLatitude: Double, userLongitude: Double) -> Double? {
+        let professionalLocation = CLLocation(latitude: professionalLatitude, longitude: professionalLongitude)
+        let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
+        let distance = userLocation.distance(from: professionalLocation)
+        return distance
+    }
+    
+    static func format(distance: CLLocationDistance) -> String {
+        let formattedDistance = MKDistanceFormatter()
+        formattedDistance.unitStyle = .abbreviated
+        formattedDistance.units = .metric
+        let distanceString = formattedDistance.string(fromDistance: distance)
+        return distanceString
     }
 }
