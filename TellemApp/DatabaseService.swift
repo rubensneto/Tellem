@@ -13,7 +13,7 @@ import SCLAlertView
 
 class DatabaseService {
     
-    lazy var ref = FIRDatabase.database().reference(fromURL: "https://tellemapp-c58a5.firebaseio.com/")
+    lazy var ref = FIRDatabase.database().reference(fromURL: "Your Firebase database URL here.")
     let alertView = SCLAlertView()
     
     

@@ -23,7 +23,6 @@
 		D71047551E5D843B00E7929D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047501E5D843B00E7929D /* Extensions.swift */; };
 		D71047561E5D843B00E7929D /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71047511E5D843B00E7929D /* UserObject.swift */; };
 		D71047591E5D84B900E7929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71047571E5D84B900E7929D /* Main.storyboard */; };
-		D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */; };
 		D71525111E5F036400D7ED68 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71525101E5F036400D7ED68 /* ConversationViewController.swift */; };
 		D7C65E771E7A728E00655DDB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C65E761E7A728E00655DDB /* ContactInfoViewController.swift */; };
 		D7C943CE1E6D5B1A009C9613 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C943CD1E6D5B1A009C9613 /* SearchViewController.swift */; };
@@ -49,7 +48,6 @@
 		D71047501E5D843B00E7929D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D71047511E5D843B00E7929D /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		D71047581E5D84B900E7929D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71525101E5F036400D7ED68 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		D7249D411E90DE1E007D942C /* TellemApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TellemApp.entitlements; sourceTree = "<group>"; };
 		D7C65E761E7A728E00655DDB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				D71047571E5D84B900E7929D /* Main.storyboard */,
 				D710472A1E5D7E4B00E7929D /* LaunchScreen.storyboard */,
 				D710472D1E5D7E4B00E7929D /* Info.plist */,
-				D715250E1E5D884100D7ED68 /* GoogleService-Info.plist */,
 				D71047251E5D7E4B00E7929D /* TellemApp.xcdatamodeld */,
 			);
 			path = TellemApp;
@@ -221,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D710472C1E5D7E4B00E7929D /* LaunchScreen.storyboard in Resources */,
-				D715250F1E5D884100D7ED68 /* GoogleService-Info.plist in Resources */,
 				D71047291E5D7E4B00E7929D /* Assets.xcassets in Resources */,
 				D71047591E5D84B900E7929D /* Main.storyboard in Resources */,
 			);
@@ -419,6 +415,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 65629Q9C5V;
 				INFOPLIST_FILE = TellemApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -435,6 +432,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 65629Q9C5V;
 				INFOPLIST_FILE = TellemApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
